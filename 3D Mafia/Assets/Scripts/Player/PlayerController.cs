@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     [SerializeField] private Transform playerCamera = null;
     [SerializeField] public float sensX = 10.0f;
@@ -12,9 +15,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0.0f, 0.5f)] public float moveSmoothTime = 0.3f;
     [SerializeField] [Range(0.0f, 0.5f)] public float mouseSmoothTime = 0.3f;
     [SerializeField] private bool lockCursor = true;
+    [SerializeField] private Camera CameraObject;
 
-    
-    
+
+
     private float _cameraPitch = 0.0f;
     private CharacterController _controller = null;
 
@@ -28,6 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         // get player controller
         _controller = GetComponent<CharacterController>();
+        CameraObject.enabled = false;
         
         // lock cursor to window and hide
         if (lockCursor)
@@ -45,6 +50,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
+        CameraObject.enabled = true;
         UpdateMouseLook();
         UpdateMovement();
     }
