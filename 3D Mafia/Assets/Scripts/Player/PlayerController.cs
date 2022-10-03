@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -15,7 +16,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] [Range(0.0f, 0.5f)] public float moveSmoothTime = 0.3f;
     [SerializeField] [Range(0.0f, 0.5f)] public float mouseSmoothTime = 0.3f;
     [SerializeField] private bool lockCursor = true;
-    [SerializeField] private Camera CameraObject;
+    [SerializeField] private Camera cameraObject;
 
 
 
@@ -32,8 +33,8 @@ public class PlayerController : NetworkBehaviour
     {
         // get player controller
         _controller = GetComponent<CharacterController>();
-        CameraObject.enabled = false;
-        
+        cameraObject.enabled = false;
+
         // lock cursor to window and hide
         if (lockCursor)
         {
@@ -51,7 +52,7 @@ public class PlayerController : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) return;
-        CameraObject.enabled = true;
+        cameraObject.enabled = true;
         UpdateMouseLook();
         UpdateMovement();
     }
