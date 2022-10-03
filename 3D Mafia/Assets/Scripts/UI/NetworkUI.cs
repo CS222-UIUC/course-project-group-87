@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class NetworkUI : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class NetworkUI : MonoBehaviour
     [SerializeField] private Button hostBtn;
     [SerializeField] private Button clientBtn;
     [SerializeField] private TMP_InputField passwordField;
+    [SerializeField] private GameObject interact;
 
     private string password;
 
@@ -29,7 +32,9 @@ public class NetworkUI : MonoBehaviour
     public void Server()
     {
         // Most likely won't use
-        NetworkManager.Singleton.StartServer();
+        // NetworkManager.Singleton.StartServer();
+        GameObject go = Instantiate(interact, Vector3.zero, Quaternion.identity);
+        go.GetComponent<NetworkObject>().Spawn();
 
     }
     
@@ -46,6 +51,18 @@ public class NetworkUI : MonoBehaviour
         password = passwordField.text;
         NetworkManager.Singleton.NetworkConfig.ConnectionData = Encoding.ASCII.GetBytes(password);
         NetworkManager.Singleton.StartClient();
+    }
+
+    private void spawn()
+    {
+        // float x;
+        // float y;
+        // for (int i = 0; i < 4; i++)
+        // {
+        //     x = Random.Range(-20.0f, 20.0f);
+        //     
+        // }
+        Instantiate(interact, new Vector3(3.0f, 4.0f, 5.0f), Quaternion.identity);
     }
     
     private void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
