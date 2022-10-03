@@ -35,7 +35,6 @@ public class NetworkUI : MonoBehaviour
     
     public void Host()
     {
-        Debug.Log("ASDFJKLJPQT");
         password = passwordField.text;
         NetworkManager.Singleton.ConnectionApprovalCallback = ApprovalCheck;
         NetworkManager.Singleton.NetworkConfig.ConnectionData = Encoding.ASCII.GetBytes(password);
@@ -61,7 +60,6 @@ public class NetworkUI : MonoBehaviour
 
         if (pass == password)
         {
-            Debug.Log("PENIS");
             response.Approved = true;
             response.CreatePlayerObject = true;
         }
