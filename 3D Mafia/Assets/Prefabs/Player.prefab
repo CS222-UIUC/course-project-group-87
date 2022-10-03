@@ -237,7 +237,7 @@ MonoBehaviour:
   moveSmoothTime: 0.157
   mouseSmoothTime: 0.036
   lockCursor: 1
-  CameraObject: {fileID: 5976473832196234710}
+  cameraObject: {fileID: 5976473832196234710}
 --- !u!143 &5976473832771744039
 CharacterController:
   m_ObjectHideFlags: 0
