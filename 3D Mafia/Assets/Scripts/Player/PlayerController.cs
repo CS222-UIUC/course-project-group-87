@@ -17,22 +17,31 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] [Range(0.0f, 0.5f)] public float mouseSmoothTime = 0.3f;
     [SerializeField] private bool lockCursor = true;
     [SerializeField] private Camera cameraObject;
+    [SerializeField] private Transform gCheck = null;
+    [SerializeField] public float groundDistance;
+    [SerializeField] public float JumpHeight;
 
 
 
+    public LayerMask Ground;
     private float _cameraPitch = 0.0f;
     private CharacterController _controller = null;
+    private float _grav = -20.0f;
+    private bool _isGrounded;
+    private Vector3 velocity;
 
     private Vector2 _currentDir = Vector2.zero;
     private Vector2 _currentDirVelocity = Vector2.zero;
     
     private Vector2 _currentMouseDelta = Vector2.zero;
     private Vector2 _currentMouseDeltaVelocity = Vector2.zero;
+
     // Start is called before the first frame update
     void Start()
     {
         // get player controller
         _controller = GetComponent<CharacterController>();
+        
         cameraObject.enabled = false;
 
         // lock cursor to window and hide
@@ -53,6 +62,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (!IsOwner) return;
         cameraObject.enabled = true;
+        // _isGrounded = _controller.isGrounded;
         UpdateMouseLook();
         UpdateMovement();
     }
@@ -78,12 +88,25 @@ public class PlayerController : NetworkBehaviour
 
     void UpdateMovement()
     {
+        _isGrounded = Physics.CheckSphere(gCheck.transform.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
+        if (_isGrounded && velocity.y < 0)
+        {
+            velocity.y = 0f;
+        }
         Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         targetDir.Normalize();
 
         _currentDir = Vector2.SmoothDamp(_currentDir, targetDir, ref _currentDirVelocity, moveSmoothTime);
+
+        Vector3 move = (transform.forward * _currentDir.y + transform.right * _currentDir.x) * walkSpeed;
+        _controller.Move(move * Time.deltaTime);
         
-        Vector3 velocity = (transform.forward * _currentDir.y + transform.right * _currentDir.x) * walkSpeed;
+        velocity.y += _grav*Time.deltaTime;
+        if (Input.GetKeyDown("space") && _isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(JumpHeight * -2f * _grav);
+        }
+
         _controller.Move(velocity * Time.deltaTime);
     }
 }
