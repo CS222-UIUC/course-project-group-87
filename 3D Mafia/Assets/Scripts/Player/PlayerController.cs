@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -18,8 +19,11 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private bool lockCursor = true;
     [SerializeField] private Camera cameraObject;
     [SerializeField] private Transform gCheck = null;
-    [SerializeField] public float groundDistance;
-    [SerializeField] public float JumpHeight;
+    [SerializeField] private float groundDistance;
+    [SerializeField] private float JumpHeight;
+    [SerializeField] private float crouchSpeed;
+    [SerializeField] private float crouchHeight;
+    [SerializeField] private float standHeight;
 
 
 
@@ -28,6 +32,7 @@ public class PlayerController : NetworkBehaviour
     private CharacterController _controller = null;
     private float _grav = -20.0f;
     private bool _isGrounded;
+    private bool _crouching;
     private Vector3 velocity;
 
     private Vector2 _currentDir = Vector2.zero;
@@ -58,15 +63,41 @@ public class PlayerController : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+
         if (!IsOwner) return;
         cameraObject.enabled = true;
-        // _isGrounded = _controller.isGrounded;
+        _isGrounded = Physics.CheckSphere(gCheck.transform.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
+        _crouching = Input.GetKey(KeyCode.LeftControl);
         UpdateMouseLook();
         UpdateMovement();
+        Debug.Log(playerCamera.transform.position);
     }
-    
+
+    private void FixedUpdate()
+    {
+        var desiredHeight = _crouching ? crouchHeight : standHeight;
+        
+        if (_controller.height != desiredHeight)
+        {
+            AdjustHeight(desiredHeight);
+        }
+    }
+
+    private void AdjustHeight(float height)
+    {
+        float center = height / 2;
+
+        var camPos = playerCamera.position;
+
+        _controller.height = Mathf.Lerp(_controller.height, height, crouchSpeed);
+        _controller.center = Vector3.Lerp(_controller.center, new Vector3(0, center, 0), crouchSpeed);
+
+        playerCamera.position = new Vector3(playerCamera.position.x, 0.99f * _controller.height, playerCamera.position.z);
+        Debug.Log(0.99f * _controller.height);
+    }
+
     void UpdateMouseLook()
     {
         // mouse movement
@@ -88,17 +119,16 @@ public class PlayerController : NetworkBehaviour
 
     void UpdateMovement()
     {
-        _isGrounded = Physics.CheckSphere(gCheck.transform.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
         if (_isGrounded && velocity.y < 0)
         {
             velocity.y = 0f;
         }
-        Vector2 targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        var targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         targetDir.Normalize();
 
         _currentDir = Vector2.SmoothDamp(_currentDir, targetDir, ref _currentDirVelocity, moveSmoothTime);
 
-        Vector3 move = (transform.forward * _currentDir.y + transform.right * _currentDir.x) * walkSpeed;
+        var move = (transform.forward * _currentDir.y + transform.right * _currentDir.x) * walkSpeed;
         _controller.Move(move * Time.deltaTime);
         
         velocity.y += _grav*Time.deltaTime;
@@ -109,4 +139,5 @@ public class PlayerController : NetworkBehaviour
 
         _controller.Move(velocity * Time.deltaTime);
     }
+
 }
