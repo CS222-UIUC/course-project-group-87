@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.TextCore.Text;
@@ -24,6 +25,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private float crouchSpeed;
     [SerializeField] private float crouchHeight;
     [SerializeField] private float standHeight;
+    [SerializeField] private GameObject model;
 
 
 
@@ -94,8 +96,10 @@ public class PlayerController : NetworkBehaviour
         _controller.height = Mathf.Lerp(_controller.height, height, crouchSpeed);
         _controller.center = Vector3.Lerp(_controller.center, new Vector3(0, center, 0), crouchSpeed);
 
-        playerCamera.position = new Vector3(playerCamera.position.x, 0.99f * _controller.height, playerCamera.position.z);
-        Debug.Log(0.99f * _controller.height);
+        transform.localScale = new Vector3(0.0f, _controller.height / 2, 0.0f);
+        model.transform.localScale = new Vector3(0.0f, _controller.height / 2, 0.0f);
+        // playerCamera.position = new Vector3(playerCamera.position.x, 0.99f * _controller.height, playerCamera.position.z);
+        // Debug.Log(0.99f * _controller.height);
     }
 
     void UpdateMouseLook()
