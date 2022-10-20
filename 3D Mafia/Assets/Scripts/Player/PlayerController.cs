@@ -74,7 +74,7 @@ public class PlayerController : NetworkBehaviour
         _crouching = Input.GetKey(KeyCode.LeftControl);
         UpdateMouseLook();
         UpdateMovement();
-        Debug.Log(playerCamera.transform.position);
+        //Debug.Log(playerCamera.transform.position);
     }
 
     private void FixedUpdate()
