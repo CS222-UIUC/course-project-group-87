@@ -30,10 +30,12 @@ public class PlayerController : NetworkBehaviour
 
 
     public LayerMask Ground;
+    public LayerMask Interactable;
     private float _cameraPitch = 0.0f;
     private CharacterController _controller = null;
     private float _grav = -20.0f;
     private bool _isGrounded;
+    private bool _isInteractable;
     private bool _crouching;
     private Vector3 velocity;
 
@@ -71,6 +73,7 @@ public class PlayerController : NetworkBehaviour
         if (!IsOwner) return;
         cameraObject.enabled = true;
         _isGrounded = Physics.CheckSphere(gCheck.transform.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
+        _isInteractable = Physics.CheckSphere(gCheck.transform.position, groundDistance, Interactable, QueryTriggerInteraction.Ignore);
         _crouching = Input.GetKey(KeyCode.LeftControl);
         UpdateMouseLook();
         UpdateMovement();
@@ -123,7 +126,7 @@ public class PlayerController : NetworkBehaviour
 
     void UpdateMovement()
     {
-        if (_isGrounded && velocity.y < 0)
+        if ((_isGrounded || _isInteractable) && velocity.y < 0)
         {
             velocity.y = 0f;
         }
@@ -136,7 +139,7 @@ public class PlayerController : NetworkBehaviour
         _controller.Move(move * Time.deltaTime);
         
         velocity.y += _grav*Time.deltaTime;
-        if (Input.GetKeyDown("space") && _isGrounded)
+        if (Input.GetKeyDown("space") && (_isGrounded || _isInteractable))
         {
             velocity.y = Mathf.Sqrt(JumpHeight * -2f * _grav);
         }

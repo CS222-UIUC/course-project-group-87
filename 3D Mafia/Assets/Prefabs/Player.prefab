@@ -154,6 +154,9 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 8
+  Interactable:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!143 &5976473832771744039
 CharacterController:
   m_ObjectHideFlags: 0
