@@ -72,9 +72,10 @@ public class PlayerController : NetworkBehaviour
         cameraObject.enabled = true;
         _isGrounded = Physics.CheckSphere(gCheck.transform.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
         _crouching = Input.GetKey(KeyCode.LeftControl);
+        walkSpeed = _crouching ? 5.0f: 10.0f;
         UpdateMouseLook();
         UpdateMovement();
-        Debug.Log(playerCamera.transform.position);
+        // Debug.Log(playerCamera.transform.position);
     }
 
     private void FixedUpdate()
@@ -91,7 +92,7 @@ public class PlayerController : NetworkBehaviour
     {
         float center = height / 2;
 
-        var camPos = playerCamera.position;
+        // var camPos = playerCamera.position;
 
         _controller.height = Mathf.Lerp(_controller.height, height, crouchSpeed);
         _controller.center = Vector3.Lerp(_controller.center, new Vector3(0, center, 0), crouchSpeed);
