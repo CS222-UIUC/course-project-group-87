@@ -1425,7 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f929fa7ede05aa4885ea3dff8374d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: 
+  _prompt: Interact with ball!
 --- !u!1 &1332174313
 GameObject:
   m_ObjectHideFlags: 0
