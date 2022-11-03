@@ -231,6 +231,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3342162963
       objectReference: {fileID: 0}
+    - target: {fileID: 7147159823831821497, guid: a8cd572945247fc448df2ed1fd0a0e32, type: 3}
+      propertyPath: m_Name
+      value: Ball 2 Text
+      objectReference: {fileID: 0}
     - target: {fileID: 7147159825320381907, guid: a8cd572945247fc448df2ed1fd0a0e32, type: 3}
       propertyPath: m_Name
       value: Ball 2
@@ -497,6 +501,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8604045607132181640, guid: cece0358ca5b8a1468106e2f7a2a99fb, type: 3}
+--- !u!114 &350405956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350405948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75a9ac8a429a9804fb755bc26bf247c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prompt: Watch me scan
 --- !u!1 &462940492
 GameObject:
   m_ObjectHideFlags: 0
