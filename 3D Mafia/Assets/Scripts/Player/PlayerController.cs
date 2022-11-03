@@ -45,9 +45,17 @@ public class PlayerController : NetworkBehaviour
     private Vector2 _currentMouseDelta = Vector2.zero;
     private Vector2 _currentMouseDeltaVelocity = Vector2.zero;
 
+    private NetworkVariable<int> randomNumber = new NetworkVariable<int>(0,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner);
+
     // Start is called before the first frame update
-    void Start()
+    public override void OnNetworkSpawn()
     {
+        randomNumber.OnValueChanged += (int previousValue, int newValue) =>
+        {
+            Debug.Log(OwnerClientId + "; randomNumber: " + randomNumber.Value );
+        };
         // get player controller
         _controller = GetComponent<CharacterController>();
         
@@ -75,6 +83,10 @@ public class PlayerController : NetworkBehaviour
         _isGrounded = Physics.CheckSphere(gCheck.transform.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
         _isInteractable = Physics.CheckSphere(gCheck.transform.position, groundDistance, Interactable, QueryTriggerInteraction.Ignore);
         _crouching = Input.GetKey(KeyCode.LeftControl);
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            randomNumber.Value += 1;
+        }
         UpdateMouseLook();
         UpdateMovement();
         //Debug.Log(playerCamera.transform.position);
