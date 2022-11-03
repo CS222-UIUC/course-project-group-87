@@ -151,6 +151,7 @@ MonoBehaviour:
   crouchHeight: 1
   standHeight: 2
   model: {fileID: 5230383450177362916}
+  particlePrefab: {fileID: 737892851119540532, guid: b97d2892313355a499553c7a5a92cbf2, type: 3}
   Ground:
     serializedVersion: 2
     m_Bits: 8

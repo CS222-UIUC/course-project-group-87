@@ -27,8 +27,11 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private float standHeight;
     [SerializeField] private GameObject model;
 
+    [SerializeField] private GameObject particlePrefab;
 
 
+
+    private int _score = 0;
     public LayerMask Ground;
     public LayerMask Interactable;
     private float _cameraPitch = 0.0f;
@@ -54,7 +57,7 @@ public class PlayerController : NetworkBehaviour
     {
         randomNumber.OnValueChanged += (int previousValue, int newValue) =>
         {
-            Debug.Log(OwnerClientId + "; randomNumber: " + randomNumber.Value );
+            Debug.Log(OwnerClientId);
         };
         // get player controller
         _controller = GetComponent<CharacterController>();
@@ -85,7 +88,12 @@ public class PlayerController : NetworkBehaviour
         _crouching = Input.GetKey(KeyCode.LeftControl);
         if (Input.GetKeyDown(KeyCode.T))
         {
+            GameStateServerRpc();
             randomNumber.Value += 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            TestServerRpc();
         }
         UpdateMouseLook();
         UpdateMovement();
@@ -158,5 +166,43 @@ public class PlayerController : NetworkBehaviour
 
         _controller.Move(velocity * Time.deltaTime);
     }
+    
+    [ServerRpc]
+    private void GameStateServerRpc()
+    {
+        // _score++;
+        // Debug.Log("SCORE: " + _score);
+        // if (_score > 10)
+        // {
+        //     Debug.Log("YOU WIN");
+        // }
 
+        GameStateClientRpc();
+    }
+
+    [ServerRpc]
+    private void TestServerRpc()
+    {
+        Debug.Log(OwnerClientId + "CALLED FUNCTION");
+        TestClientRpc();
+    }
+
+    [ClientRpc]
+    private void TestClientRpc()
+    {
+        Debug.Log("test");
+        Instantiate(particlePrefab, transform.position, transform.rotation);
+    }
+
+    [ClientRpc]
+    private void GameStateClientRpc()
+    {
+        _score++;
+        if (_score > 10)
+        {
+            Debug.Log("YOU WIN");
+        }
+
+    }
+    
 }
