@@ -26,11 +26,10 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private float crouchHeight;
     [SerializeField] private float standHeight;
     [SerializeField] private GameObject model;
-
     [SerializeField] private GameObject particlePrefab;
 
 
-
+    public static List<PlayerController> ActivePlayers = new List<PlayerController>();
     private int _score = 0;
     public LayerMask Ground;
     public LayerMask Interactable;
@@ -50,11 +49,12 @@ public class PlayerController : NetworkBehaviour
 
     private NetworkVariable<int> randomNumber = new NetworkVariable<int>(0,
         NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Owner);
+        NetworkVariableWritePermission.Server);
 
     // Start is called before the first frame update
     public override void OnNetworkSpawn()
     {
+        ActivePlayers.Add(this);
         randomNumber.OnValueChanged += (int previousValue, int newValue) =>
         {
             Debug.Log(OwnerClientId);
@@ -77,10 +77,14 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
+    // protected override void OnDestroy()
+    // {
+    //     ActivePlayers.Remove(this);
+    // }
+
     // Update is called once per frame
     private void Update()
     {
-
         if (!IsOwner) return;
         cameraObject.enabled = true;
         _isGrounded = Physics.CheckSphere(gCheck.transform.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
@@ -88,8 +92,9 @@ public class PlayerController : NetworkBehaviour
         _crouching = Input.GetKey(KeyCode.LeftControl);
         if (Input.GetKeyDown(KeyCode.T))
         {
+            // Debug.Log(_score);
             GameStateServerRpc();
-            randomNumber.Value += 1;
+            // randomNumber.Value += 1;
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
@@ -170,14 +175,21 @@ public class PlayerController : NetworkBehaviour
     [ServerRpc]
     private void GameStateServerRpc()
     {
+        if (!IsHost)
+        {
+            return;
+        }
         // _score++;
         // Debug.Log("SCORE: " + _score);
         // if (_score > 10)
         // {
         //     Debug.Log("YOU WIN");
         // }
-
-        GameStateClientRpc();
+        // randomNumber.Value += 1;
+        foreach (PlayerController p in ActivePlayers)
+        {
+            p.GameStateClientRpc();
+        }
     }
 
     [ServerRpc]
@@ -198,7 +210,8 @@ public class PlayerController : NetworkBehaviour
     private void GameStateClientRpc()
     {
         _score++;
-        if (_score > 10)
+        Debug.Log(_score);
+        if (_score >= 10)
         {
             Debug.Log("YOU WIN");
         }
