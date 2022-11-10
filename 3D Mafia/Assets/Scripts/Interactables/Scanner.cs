@@ -13,18 +13,18 @@ public class Scanner : MonoBehaviour, IInteractable
 
         var inventory = interactor.GetComponent<Inventory>();
 
-        if (inventory == null) {
-            return false;
-        }
+        //if (inventory == null) {
+        //    return false;
+        //}
 
-        if (inventory.HasKey) {
-            Debug.Log("Scaling size of scanner!");
-            scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
-            this.transform.localScale += scaleChange;
+        //if (inventory.HasKey) {
+            Debug.Log("Scanning!");
+            //scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
+            //this.transform.localScale += scaleChange;
             return true;
-        }
+        //}
 
-        Debug.Log("No key found!");
-        return false;
+        //Debug.Log("No key found!");
+        //return false;
     }
 }

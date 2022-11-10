@@ -18,6 +18,9 @@ public class Interactor : MonoBehaviour
     public TextMeshProUGUI scanText;
     public TextMeshProUGUI whiteboardText;
     public TextMeshProUGUI targetText;
+    public TextMeshProUGUI interactUIText;
+
+    private int cleanCount = 0;
 
     private void Update() {
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
@@ -32,15 +35,35 @@ public class Interactor : MonoBehaviour
                 }
 
                 if (interactable is Ball) {
+                    interactUIText.SetText("Interact");
                     changeText = ballText;
+
+                    if (Input.GetKeyDown("e")) {
+                        interactable.Interact(this);
+                        changeTextColor();
+                    }
                 } else if (interactable is Scanner) {
                     changeText = scanText;
+                    interactUIText.SetText("Hold to interact");
+                    
+                    if (Input.GetKeyDown("e")) {
+                        StartCoroutine(ScanWait());
+                    }
+                } else if (interactable is Whiteboard) {
+                    changeText = whiteboardText;
+                    interactUIText.SetText("Press E 3 times to interact");
+
+                    if (Input.GetKeyDown("e")) {
+                        cleanCount++;
+                        Debug.Log(cleanCount);
+
+                        if (cleanCount == 3) {
+                            interactable.Interact(this);
+                            changeTextColor();
+                        }
+                    }
                 }
 
-                if (Input.GetKeyDown("e")) {
-                    interactable.Interact(this);
-                    changeTextColor();
-                }
             } 
 
             //if (interactable != null && Input.GetKeyDown("e")) {
@@ -65,5 +88,38 @@ public class Interactor : MonoBehaviour
     public void changeTextColor()
     {
         changeText.color = new Color32(0, 255, 0, 255);
+    }
+
+    IEnumerator ScanWait ()
+    {
+        yield return new WaitForSeconds(3);
+        
+        if (interactable == null || !(interactable is Scanner)) {
+            Debug.Log("Failed to scan!");
+            yield return null;
+        } else {
+            interactable.Interact(this);
+            changeTextColor();
+        }
+        
+    }
+
+    IEnumerator WhiteboardWait() {
+        yield return new WaitForSeconds(2);
+
+        if (Input.GetKeyDown("e")) {
+            yield return new WaitForSeconds(2);
+
+            if (Input.GetKeyDown("e")) {
+                interactable.Interact(this);
+                changeTextColor();
+            } else {
+                Debug.Log("Failed to clean whiteboard!");
+                yield return null;
+            }
+        } else {
+            Debug.Log("Failed to clean whiteboard!");
+            yield return null;
+        }
     }
 }
