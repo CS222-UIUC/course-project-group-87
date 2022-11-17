@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour, IInteractable
+public class Food : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
 
@@ -18,7 +18,7 @@ public class Ball : MonoBehaviour, IInteractable
         //}
 
         //if (inventory.HasKey) {
-            Debug.Log("Interacting with button!");
+            Debug.Log("Cooking food!");
             //scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
             //this.transform.localScale += scaleChange;
             return true;

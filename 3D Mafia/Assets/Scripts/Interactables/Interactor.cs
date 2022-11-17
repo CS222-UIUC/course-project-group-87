@@ -18,9 +18,18 @@ public class Interactor : MonoBehaviour
     public TextMeshProUGUI scanText;
     public TextMeshProUGUI whiteboardText;
     public TextMeshProUGUI targetText;
+    public TextMeshProUGUI foodText;
     public TextMeshProUGUI interactUIText;
 
     private int cleanCount = 0;
+    private bool cleaned = false;
+
+    private bool foodReady = false;
+    private bool foodCooking = false;
+    private bool foodTaken = false;
+
+    private bool buttonPressed = false;
+    private bool scanned = false;
 
     private void Update() {
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
@@ -31,36 +40,70 @@ public class Interactor : MonoBehaviour
 
             if (interactable != null) {
                 if (!InteractionPromptUI.IsDisplayed) {
-                    InteractionPromptUI.SetUp("Interact!");
+                    if (!(interactable is Whiteboard && cleaned) && !(interactable is Ball && buttonPressed) && !(interactable is Scanner && scanned) && !(interactable is Food && foodTaken)) {
+                        InteractionPromptUI.SetUp("Interact!");
+                    }
+                    
                 }
 
-                if (interactable is Ball) {
-                    interactUIText.SetText("Interact");
-                    changeText = ballText;
+                if (interactable is Ball && !buttonPressed) {
+                    if (!buttonPressed) {
+                        interactUIText.SetText("Press button!");
+                        changeText = ballText;
 
-                    if (Input.GetKeyDown("e")) {
-                        interactable.Interact(this);
-                        changeTextColor();
-                    }
-                } else if (interactable is Scanner) {
-                    changeText = scanText;
-                    interactUIText.SetText("Hold to interact");
-                    
-                    if (Input.GetKeyDown("e")) {
-                        StartCoroutine(ScanWait());
-                    }
-                } else if (interactable is Whiteboard) {
-                    changeText = whiteboardText;
-                    interactUIText.SetText("Press E 3 times to interact");
-
-                    if (Input.GetKeyDown("e")) {
-                        cleanCount++;
-                        Debug.Log(cleanCount);
-
-                        if (cleanCount == 3) {
+                        if (Input.GetKeyDown("e")) {
                             interactable.Interact(this);
                             changeTextColor();
+                            buttonPressed = true;
                         }
+                    }
+                    
+                } else if (interactable is Scanner && !scanned) {
+                    if (!scanned) {
+                        changeText = scanText;
+                        interactUIText.SetText("Start scanner and stay nearby!");
+                        
+                        if (Input.GetKeyDown("e")) {
+                            StartCoroutine(ScanWait());
+                            scanned = true;
+                        }
+                    }
+                    
+                } else if (interactable is Whiteboard && !cleaned) {
+                    if (!cleaned) {
+                        changeText = whiteboardText;
+                        interactUIText.SetText("Clean 3 times!");
+
+                        if (Input.GetKeyDown("e")) {
+                            cleanCount++;
+                            Debug.Log(cleanCount);
+
+                            if (cleanCount == 3) {
+                                interactable.Interact(this);
+                                changeTextColor();
+                                cleaned = true;
+                            }
+                        }
+                    }
+                    
+                } else if (interactable is Food && !foodTaken) {
+                    changeText = foodText;
+
+                    if (foodCooking) {
+                        interactUIText.SetText("Cooking food");
+                    } else if (!foodReady) {
+                        interactUIText.SetText("Cook food");
+                    } else if (foodReady) {
+                        interactUIText.SetText("Take food");
+                    }
+
+                    if (Input.GetKeyDown("e") && !foodReady) {
+                        foodText.text = "   Cooking";
+                        StartCoroutine(FoodWait());
+                    } else if (Input.GetKeyDown("e") && foodReady) {
+                        interactable.Interact(this);
+                        changeTextColor();
+                        foodTaken = true;
                     }
                 }
 
@@ -121,5 +164,14 @@ public class Interactor : MonoBehaviour
             Debug.Log("Failed to clean whiteboard!");
             yield return null;
         }
+    }
+
+    IEnumerator FoodWait() {
+        foodCooking = true;
+        yield return new WaitForSeconds(20);
+        foodCooking = false;
+        foodReady = true;
+        Debug.Log("Food is ready");
+        foodText.text = "   Food is ready";
     }
 }

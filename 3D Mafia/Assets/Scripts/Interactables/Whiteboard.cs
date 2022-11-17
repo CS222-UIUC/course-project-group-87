@@ -8,11 +8,11 @@ public class Whiteboard : MonoBehaviour, IInteractable
 
     public string InteractionPrompt => _prompt;
     private Vector3 scaleChange, positionChange;
+    public Material Material1;
 
     public bool Interact(Interactor interactor) {
 
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
-        mesh.Clear();
+        GetComponent<MeshRenderer>().material = Material1;
 
         Debug.Log("Entered password!");
         return true;
