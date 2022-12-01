@@ -31,6 +31,8 @@ public class Interactor : MonoBehaviour
     private bool buttonPressed = false;
     private bool scanned = false;
 
+    private bool shotTarget = false;
+
     private void Update() {
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
 
@@ -40,7 +42,7 @@ public class Interactor : MonoBehaviour
 
             if (interactable != null) {
                 if (!InteractionPromptUI.IsDisplayed) {
-                    if (!(interactable is Whiteboard && cleaned) && !(interactable is Ball && buttonPressed) && !(interactable is Scanner && scanned) && !(interactable is Food && foodTaken)) {
+                    if (!(interactable is Whiteboard && cleaned) && !(interactable is Ball && buttonPressed) && !(interactable is Scanner && scanned) && !(interactable is Food && foodTaken) && !(interactable is Target && ((Target)interactable).health != 30 && shotTarget)) {
                         InteractionPromptUI.SetUp("Interact!");
                     }
                     
@@ -55,6 +57,7 @@ public class Interactor : MonoBehaviour
                             interactable.Interact(this);
                             changeTextColor();
                             buttonPressed = true;
+                            InteractionPromptUI.Close();
                         }
                     }
                     
@@ -82,6 +85,7 @@ public class Interactor : MonoBehaviour
                                 interactable.Interact(this);
                                 changeTextColor();
                                 cleaned = true;
+                                InteractionPromptUI.Close();
                             }
                         }
                     }
@@ -104,7 +108,21 @@ public class Interactor : MonoBehaviour
                         interactable.Interact(this);
                         changeTextColor();
                         foodTaken = true;
+                        InteractionPromptUI.Close();
                     }
+                } else if (interactable is Target && !shotTarget) {
+
+                    Target t = (Target) interactable;
+                    changeText = targetText;
+                    interactUIText.SetText("Shoot target!");
+
+                    if (t.health < 30f) {
+                        InteractionPromptUI.Close();
+                        interactable.Interact(this);
+                        changeTextColor();
+                        shotTarget = true;
+                    }
+                    
                 }
 
             } 
@@ -145,6 +163,7 @@ public class Interactor : MonoBehaviour
             interactable.Interact(this);
             changeTextColor();
             scanned = true;
+            InteractionPromptUI.Close();
         }
         
     }
