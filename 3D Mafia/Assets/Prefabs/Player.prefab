@@ -1150,6 +1150,7 @@ MonoBehaviour:
   crouchSpeed: 0.6
   crouchHeight: 1
   standHeight: 2
+  sprintSpeed: 40
   model: {fileID: 5230383450177362916}
   Ground:
     serializedVersion: 2

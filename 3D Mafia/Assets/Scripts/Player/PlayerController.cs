@@ -25,6 +25,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private float crouchSpeed;
     [SerializeField] private float crouchHeight;
     [SerializeField] private float standHeight;
+    [SerializeField] private float sprintSpeed;
     [SerializeField] private GameObject model;
 
 
@@ -135,8 +136,13 @@ public class PlayerController : NetworkBehaviour
 
         _currentDir = Vector2.SmoothDamp(_currentDir, targetDir, ref _currentDirVelocity, moveSmoothTime);
 
-        var move = (transform.forward * _currentDir.y + transform.right * _currentDir.x) * walkSpeed;
-        _controller.Move(move * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftShift) && (_isGrounded || _isInteractable) && !_crouching && !(Input.GetKeyDown("space"))) {
+            var move = (transform.forward * _currentDir.y + transform.right * _currentDir.x) * sprintSpeed;
+            _controller.Move(move * Time.deltaTime);
+        } else {
+            var move = (transform.forward * _currentDir.y + transform.right * _currentDir.x) * walkSpeed;
+            _controller.Move(move * Time.deltaTime);
+        }
         
         velocity.y += _grav*Time.deltaTime;
         if (Input.GetKeyDown("space") && (_isGrounded || _isInteractable))
