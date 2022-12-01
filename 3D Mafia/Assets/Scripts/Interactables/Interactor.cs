@@ -65,7 +65,7 @@ public class Interactor : MonoBehaviour
                         
                         if (Input.GetKeyDown("e")) {
                             StartCoroutine(ScanWait());
-                            scanned = true;
+                            
                         }
                     }
                     
@@ -139,10 +139,12 @@ public class Interactor : MonoBehaviour
         
         if (interactable == null || !(interactable is Scanner)) {
             Debug.Log("Failed to scan!");
+            scanned = false;
             yield return null;
         } else {
             interactable.Interact(this);
             changeTextColor();
+            scanned = true;
         }
         
     }
