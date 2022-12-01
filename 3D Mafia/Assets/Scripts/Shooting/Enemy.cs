@@ -9,7 +9,7 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 
-public class Enemy : NetworkBehaviour
+public class Enemy : PlayerController
 {
     public float health = 50f;
 
@@ -25,7 +25,15 @@ public class Enemy : NetworkBehaviour
     void Die() {
         //Destroy(gameObject);
 
-        gameObject.transform.position = new Vector3(-66, 0, 10);
+        int i = 0;
+
+        while (ActivePlayers[i] != this) {
+            i++;
+        }
+
+        ActivePlayers[i].transform.position = new Vector3(-66, 0, 10);
+
+        //gameObject.transform.position = new Vector3(-66, 0, 10);
         health = 50f;
     }
 }
