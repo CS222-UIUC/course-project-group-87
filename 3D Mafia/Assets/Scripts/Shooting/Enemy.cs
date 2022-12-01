@@ -1,9 +1,17 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
-public class Enemy : MonoBehaviour
+public class Enemy : NetworkBehaviour
 {
     public float health = 50f;
-    public Transform transform;
 
     public void TakeDamage (float amount)
     {
@@ -16,17 +24,8 @@ public class Enemy : MonoBehaviour
 
     void Die() {
         //Destroy(gameObject);
-        //Transform TeleportGoal = new Transform;
-        //TeleportGoal.position = new Vector3(-66, 0, 10);
-        //gameObject.transform.position = TeleportGoal.position;
-        //gameObject.NetworkTransform.position = new Vector3(-66, 0, 10);
 
-        //CharacterController _controller = GetComponent<CharacterController>();
-        //Vector3 velocity = new Vector3(0, 10, 0);
-        //_controller.Move(velocity);
-
-        transform.position = new Vector3(-66, 0, 10);
-
+        gameObject.transform.position = new Vector3(-66, 0, 10);
         health = 50f;
     }
 }
