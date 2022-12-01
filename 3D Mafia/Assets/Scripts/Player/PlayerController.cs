@@ -28,7 +28,11 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private GameObject model;
 
 
+    public static List<PlayerController> ActivePlayers = new List<PlayerController>();
+    private int _score = 0;
 
+    
+    
     public LayerMask Ground;
     public LayerMask Interactable;
     private float _cameraPitch = 0.0f;
@@ -46,8 +50,9 @@ public class PlayerController : NetworkBehaviour
     private Vector2 _currentMouseDeltaVelocity = Vector2.zero;
 
     // Start is called before the first frame update
-    void Start()
+    public override void OnNetworkSpawn()
     {
+        ActivePlayers.Add(this);
         // get player controller
         _controller = GetComponent<CharacterController>();
         
@@ -77,6 +82,7 @@ public class PlayerController : NetworkBehaviour
         _crouching = Input.GetKey(KeyCode.LeftControl);
         UpdateMouseLook();
         UpdateMovement();
+        UpdateExtras();
         //Debug.Log(playerCamera.transform.position);
     }
 
@@ -105,6 +111,20 @@ public class PlayerController : NetworkBehaviour
         // Debug.Log(0.99f * _controller.height);
     }
 
+
+    void UpdateExtras()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            // Debug.Log(_score);
+            GameStateServerRpc();
+            // randomNumber.Value += 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            TestServerRpc();
+        }
+    }
     void UpdateMouseLook()
     {
         // mouse movement
@@ -145,6 +165,51 @@ public class PlayerController : NetworkBehaviour
         }
 
         _controller.Move(velocity * Time.deltaTime);
+    }
+    
+    [ServerRpc]
+    private void GameStateServerRpc()
+    {
+        if (!IsHost)
+        {
+            return;
+        }
+        // _score++;
+        // Debug.Log("SCORE: " + _score);
+        // if (_score > 10)
+        // {
+        //     Debug.Log("YOU WIN");
+        // }
+        // randomNumber.Value += 1;
+        foreach (PlayerController p in ActivePlayers)
+        {
+            p.GameStateClientRpc();
+        }
+    }
+
+    [ServerRpc]
+    private void TestServerRpc()
+    {
+        Debug.Log(OwnerClientId + "CALLED FUNCTION");
+        TestClientRpc();
+    }
+
+    [ClientRpc]
+    private void TestClientRpc()
+    {
+        Debug.Log("test");
+    }
+
+    [ClientRpc]
+    private void GameStateClientRpc()
+    {
+        _score++;
+        Debug.Log(_score);
+        if (_score >= 10)
+        {
+            Debug.Log("YOU WIN");
+        }
+
     }
 
 }
