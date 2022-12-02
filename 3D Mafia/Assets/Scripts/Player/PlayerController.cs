@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     public static List<PlayerController> ActivePlayers = new List<PlayerController>();
     private int _score = 0;
 
-    
+    public float health = 50f;
     
     public LayerMask Ground;
     public LayerMask Interactable;
@@ -82,6 +83,18 @@ public class PlayerController : MonoBehaviour
         UpdateMouseLook();
         UpdateMovement();
         //Debug.Log(playerCamera.transform.position);
+
+        if (Input.GetKeyDown("r")) {
+            velocity = Vector3.up * 10;
+
+            StartCoroutine(DeathWait());
+
+            Die();
+        }
+    }
+
+    IEnumerator DeathWait() {
+        yield return new WaitForSeconds(3); 
     }
 
     private void FixedUpdate()
@@ -152,5 +165,20 @@ public class PlayerController : MonoBehaviour
         _controller.Move(velocity * Time.deltaTime);
     }
 
+    public void TakeDamage (float amount)
+    {
+        health -= amount;
 
+        if (health <= 0f) {
+            Die();
+        }
+    }
+
+    void Die() {
+        //Destroy(gameObject);
+
+        //gameObject.transform.position = new Vector3(-66, 0, 10);
+        health = 50f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
