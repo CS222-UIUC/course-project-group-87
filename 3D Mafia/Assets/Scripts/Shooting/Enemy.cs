@@ -9,7 +9,7 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 
-public class Enemy : NetworkBehaviour
+public class Enemy : MonoBehaviour
 {
     public float health = 50f;
 
