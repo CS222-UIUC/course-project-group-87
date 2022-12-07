@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Interactor : MonoBehaviour
 {
@@ -21,6 +22,14 @@ public class Interactor : MonoBehaviour
     public TextMeshProUGUI foodText;
     public TextMeshProUGUI interactUIText;
 
+    public CharacterController cc;
+    public Canvas c1;
+    public Canvas c2;
+    public Canvas c3;
+    public Canvas winScreen;
+    public float restartDelay = 10f;
+
+
     private int cleanCount = 0;
     private bool cleaned = false;
 
@@ -29,11 +38,34 @@ public class Interactor : MonoBehaviour
     private bool foodTaken = false;
 
     private bool buttonPressed = false;
+
     private bool scanned = false;
 
     private bool shotTarget = false;
 
+    private bool Won = false;
+
+    void Win() {
+        Debug.Log("YOU WIN");
+        Won = true;
+    }
+
     private void Update() {
+
+        if (Won && Input.GetKeyDown("r")) {
+            Won = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (cleaned && foodTaken && scanned && shotTarget && buttonPressed) {
+            Invoke("Win", restartDelay);
+            cc.enabled = false;
+            c1.enabled = false;
+            c2.enabled = false;
+            c3.enabled = false;
+            winScreen.enabled = true;
+        }
+
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
 
         if (_numFound > 0) {

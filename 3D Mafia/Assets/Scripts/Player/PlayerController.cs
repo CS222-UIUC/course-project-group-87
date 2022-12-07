@@ -83,18 +83,10 @@ public class PlayerController : MonoBehaviour
         UpdateMouseLook();
         UpdateMovement();
         //Debug.Log(playerCamera.transform.position);
-
-        if (Input.GetKeyDown("r")) {
-            velocity = Vector3.up * 10;
-
-            StartCoroutine(DeathWait());
-
-            Die();
-        }
     }
 
     IEnumerator DeathWait() {
-        yield return new WaitForSeconds(3); 
+        yield return new WaitForSeconds(5); 
     }
 
     private void FixedUpdate()
@@ -165,20 +157,4 @@ public class PlayerController : MonoBehaviour
         _controller.Move(velocity * Time.deltaTime);
     }
 
-    public void TakeDamage (float amount)
-    {
-        health -= amount;
-
-        if (health <= 0f) {
-            Die();
-        }
-    }
-
-    void Die() {
-        //Destroy(gameObject);
-
-        //gameObject.transform.position = new Vector3(-66, 0, 10);
-        health = 50f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
 }

@@ -542,6 +542,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prompt: Watch me scan
+--- !u!223 &396524178 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 608675670752559081, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+  m_PrefabInstance: {fileID: 1481124133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &453967152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,6 +1235,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cece0358ca5b8a1468106e2f7a2a99fb, type: 3}
+--- !u!223 &815343411 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 692350146564727561, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+  m_PrefabInstance: {fileID: 1481124133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &844977480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,6 +2290,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  restartDelay: 1
+  cc: {fileID: 0}
+  c1: {fileID: 0}
+  c2: {fileID: 0}
+  c3: {fileID: 0}
+  deathCanvas: {fileID: 0}
 --- !u!1 &1259085635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,6 +2500,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prompt: 
+--- !u!143 &1307497215 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 5976473832771744039, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+  m_PrefabInstance: {fileID: 1481124133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1332174313
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,6 +3007,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1147069718539517228, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: c1
+      value: 
+      objectReference: {fileID: 396524178}
+    - target: {fileID: 1147069718539517228, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: c2
+      value: 
+      objectReference: {fileID: 1634134308}
+    - target: {fileID: 1147069718539517228, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: c3
+      value: 
+      objectReference: {fileID: 815343411}
+    - target: {fileID: 1147069718539517228, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: cc
+      value: 
+      objectReference: {fileID: 1307497215}
+    - target: {fileID: 1147069718539517228, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: winScreen
+      value: 
+      objectReference: {fileID: 1862193557}
+    - target: {fileID: 1147069718539517228, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: restartDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3164353793325216270, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_Name
+      value: WinCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420670396897374087, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5368583060441646634, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_Name
+      value: Canvas2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427832974176570385, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427832974176570385, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5976473832771744032, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3038,8 +3103,66 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 1144602373
       objectReference: {fileID: 0}
+    - target: {fileID: 6231517571094606665, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_Name
+      value: DieCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231517571094606665, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670546313930069952, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670546313930069952, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 5b1631ce536a1a942a4a9316044636cb, type: 3}
+    - target: {fileID: 7260646195047366378, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324799082668207253, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: c1
+      value: 
+      objectReference: {fileID: 396524178}
+    - target: {fileID: 7324799082668207253, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: c2
+      value: 
+      objectReference: {fileID: 1634134308}
+    - target: {fileID: 7324799082668207253, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: c3
+      value: 
+      objectReference: {fileID: 815343411}
+    - target: {fileID: 7324799082668207253, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: deathCanvas
+      value: 
+      objectReference: {fileID: 1481124134}
+    - target: {fileID: 7324799082668207253, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: restartDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7342208279757112468, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_Name
+      value: Canvas 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058961104061470158, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+      propertyPath: m_Name
+      value: Canvas1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+--- !u!223 &1481124134 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 3420670396897374087, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+  m_PrefabInstance: {fileID: 1481124133}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1634134308 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4662703219818843509, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+  m_PrefabInstance: {fileID: 1481124133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1701049400
 GameObject:
   m_ObjectHideFlags: 0
@@ -4001,6 +4124,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!223 &1862193557 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 7260646195047366378, guid: 86e55e3077b0aae4ca60b683ca130e1e, type: 3}
+  m_PrefabInstance: {fileID: 1481124133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1899709285
 PrefabInstance:
   m_ObjectHideFlags: 0
