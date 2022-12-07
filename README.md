@@ -1,12 +1,11 @@
-# CS 222 Project
+# 3D Mafia
 
 <div align = "center">
   
   <img src = "images/Run4.png">
   
   <p align = "center">
-    <p><strong>3D MAFIA</strong></p>
-    <p><strong><small>Created by Yash Telang, Arthur Wang, Charlie Du, and Alex Wang</small></strong></p>
+    <p><strong>Created by Yash Telang, Arthur Wang, Charlie Du, and Alex Wang</strong></p>
   </p>
   
   <p align = "center">
