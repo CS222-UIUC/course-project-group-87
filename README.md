@@ -3,7 +3,7 @@
 <div align = "center">
   
   <p align = "center">
-    <p><strong>Run 4</strong></p>
+    <p><strong>RUN 4</strong></p>
     <p><strong><small>Created by Yash Telang, Arthur Wang, Charlie Du, and Alex Wang</small></strong></p>
   </p>
   
