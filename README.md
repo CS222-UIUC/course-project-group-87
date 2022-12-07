@@ -3,7 +3,7 @@
   <img src = "images/Run4.png">
   
   <p align = "center">
-    <h1>3D MAFIA</h1>
+    <h1>RUN 4</h1>
     <p><h3>Created by Yash Telang, Arthur Wang, Charlie Du, and Alex Wang</h3></p>
   </p>
   
@@ -50,7 +50,7 @@ Yash Telang is a current sophomore majoring in Computer Science at the Universit
 <!--- Provides reproducible installation and running instructions --->
 ## Getting Started
 ### Download Instructions
-1. Go to [3D MAFIA](https://drive.google.com/drive/u/1/folders/13qCTqrXj8mvp2V7zyenpdeTcxGncnVcA)
+1. Go to [RUN 4](https://drive.google.com/drive/u/1/folders/13qCTqrXj8mvp2V7zyenpdeTcxGncnVcA)
 2. Download the zip file (Build.zip)
 3. Unzip/extract the zip file's contents and save the contents locally onto your computer
 4. To start the game, go to build/Run4.exe and double click on Run4.exe. You should see a pop up screen. *Note that to exit the game, you must click on Alt + tab. This will give your cursor back. If you wish to make the game full-screen, you must click the full-screen option while the program opens and before it starts to run.*
@@ -72,6 +72,6 @@ Yash Telang is a current sophomore majoring in Computer Science at the Universit
   - Upon a loss, simply wait and the game will restart itself
 
 - Interface
-  - Enemies are the moving blocks. Everytime a block rams into you, you will lose some health.
-  - Destroy enemies by shooting them. Killing them will increase your score.
-  - Destroying one moving blocks will respawn 2 new moving blocks.
+  - Enemies are the moving blocks. Everytime a block rams into you, you will lose some health
+  - Destroy enemies by shooting them. Killing them will increase your score
+  - Destroying one moving blocks will respawn 2 new moving blocks
