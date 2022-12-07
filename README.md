@@ -37,7 +37,9 @@
 
 <!--- Technical architecture of project --->
 ## About Our Project
-
+<div align = "center"> 
+  <img src = "images/Run4.png">
+</div>
 
 <!--- Group members and their roles --->
 ## About Us
