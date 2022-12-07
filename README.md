@@ -17,7 +17,7 @@
 </div>
 
 <details>
-  <summary>Table of Contents</summary>
+  <summary><strong>Table of Contents</strong></summary>
   <ol>
     <li><a href = "#summary">Summary</a></li>
     <li><a href = "#about-our-project">About Our Project</a></li>
