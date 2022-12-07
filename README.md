@@ -2,6 +2,8 @@
 
 <div align = "center">
   
+  <img src = "Desktop/Run4.png">
+  
   <p align = "center">
     <p><strong>3D MAFIA</strong></p>
     <p><strong><small>Created by Yash Telang, Arthur Wang, Charlie Du, and Alex Wang</small></strong></p>
@@ -45,3 +47,4 @@ Alex Wang is a current sophomore majoring in Math & Computer Science at the Univ
 
 <!--- Provides reproducible installation and running instructions --->
 ## Getting Started
+Alt + tab is only way to exit game
