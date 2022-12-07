@@ -22,7 +22,13 @@
     <li><a href = "#summary">Summary</a></li>
     <li><a href = "#about-our-project">About Our Project</a></li>
     <li><a href = "#about-us">About Us</a></li>
-    <li><a href = "#getting-started">Getting Started</a></li>
+    <li>
+      <a href = "#getting-started">Getting Started</a>
+      <ul>
+        <li><a href = "#download-instructions">Download Instructions</a></li>
+        <li><a href = "#notes-on-gameplay">Notes On Gameplay</a></li>
+      </ul>
+    </li>
   </ol>
 </details>
 
@@ -45,4 +51,8 @@ Alex Wang is a current sophomore majoring in Math & Computer Science at the Univ
 
 <!--- Provides reproducible installation and running instructions --->
 ## Getting Started
-Alt + tab is only way to exit game
+### Download Instructions
+1. Go to [3D MAFIA](https://drive.google.com/drive/u/1/folders/13qCTqrXj8mvp2V7zyenpdeTcxGncnVcA)
+
+### Notes On GamePlay
+1. Alt + tab is only way to exit game
