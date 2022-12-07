@@ -58,4 +58,5 @@ Alex Wang is a current sophomore majoring in Math & Computer Science at the Univ
 4. To start the game, go to build/Run4.exe and double click on Run4.exe. You should see a pop up screen. *Note that to exit the game, you must click on Alt + tab. This will give your cursor back. If you wish to make the game full-screen, you must click the full-screen option while the program opens and before it starts to run.
 
 ### Notes On GamePlay
-1. Objectives are to your top-left
+- Objectives are to your top-left
+- 
