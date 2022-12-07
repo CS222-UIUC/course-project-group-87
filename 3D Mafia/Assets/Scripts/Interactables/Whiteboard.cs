@@ -11,11 +11,7 @@ public class Whiteboard : MonoBehaviour, IInteractable
     public Material Material1;
 
     public bool Interact(Interactor interactor) {
-
-        GetComponent<MeshRenderer>().material = Material1;
-
         Debug.Log("Entered password!");
         return true;
-
     }
 }

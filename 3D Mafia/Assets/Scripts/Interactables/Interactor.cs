@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Interactor : MonoBehaviour
 {
@@ -21,6 +22,15 @@ public class Interactor : MonoBehaviour
     public TextMeshProUGUI foodText;
     public TextMeshProUGUI interactUIText;
 
+    public CharacterController cc;
+    public Canvas c1;
+    public Canvas c2;
+    public Canvas c3;
+    public Canvas winScreen;
+    public float restartDelay = 10f;
+
+    private GameObject pc;
+    
     private int cleanCount = 0;
     private bool cleaned = false;
 
@@ -29,9 +39,39 @@ public class Interactor : MonoBehaviour
     private bool foodTaken = false;
 
     private bool buttonPressed = false;
+
     private bool scanned = false;
 
+    private bool shotTarget = false;
+
+    private bool Won = false;
+
+    void Win() {
+        Debug.Log("YOU WIN");
+        Won = true;
+    }
+
+    void Start() {
+        pc = GameObject.FindGameObjectsWithTag("Player")[0];
+    }
+
     private void Update() {
+
+        if (Won && Input.GetKeyDown("r")) {
+            Won = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (cleaned && foodTaken && scanned && shotTarget && buttonPressed) {
+            Invoke("Win", restartDelay);
+            cc.enabled = false;
+            c1.enabled = false;
+            c2.enabled = false;
+            c3.enabled = false;
+            winScreen.enabled = true;
+            pc.transform.GetComponent<PlayerController>().health = 1000000000f;
+        }
+
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
 
         if (_numFound > 0) {
@@ -40,7 +80,7 @@ public class Interactor : MonoBehaviour
 
             if (interactable != null) {
                 if (!InteractionPromptUI.IsDisplayed) {
-                    if (!(interactable is Whiteboard && cleaned) && !(interactable is Ball && buttonPressed) && !(interactable is Scanner && scanned) && !(interactable is Food && foodTaken)) {
+                    if (!(interactable is Whiteboard && cleaned) && !(interactable is Ball && buttonPressed) && !(interactable is Scanner && scanned) && !(interactable is Food && foodTaken) && !(interactable is Target && ((Target)interactable).health != 30 && shotTarget)) {
                         InteractionPromptUI.SetUp("Interact!");
                     }
                     
@@ -48,31 +88,32 @@ public class Interactor : MonoBehaviour
 
                 if (interactable is Ball && !buttonPressed) {
                     if (!buttonPressed) {
-                        interactUIText.SetText("Press button!");
+                        interactUIText.SetText("Destroy power unit");
                         changeText = ballText;
 
                         if (Input.GetKeyDown("e")) {
                             interactable.Interact(this);
                             changeTextColor();
                             buttonPressed = true;
+                            InteractionPromptUI.Close();
                         }
                     }
                     
                 } else if (interactable is Scanner && !scanned) {
                     if (!scanned) {
                         changeText = scanText;
-                        interactUIText.SetText("Start scanner and stay nearby!");
+                        interactUIText.SetText("Scan");
                         
                         if (Input.GetKeyDown("e")) {
                             StartCoroutine(ScanWait());
-                            scanned = true;
+                            
                         }
                     }
                     
                 } else if (interactable is Whiteboard && !cleaned) {
                     if (!cleaned) {
                         changeText = whiteboardText;
-                        interactUIText.SetText("Clean 3 times!");
+                        interactUIText.SetText("Erase evidence");
 
                         if (Input.GetKeyDown("e")) {
                             cleanCount++;
@@ -82,6 +123,7 @@ public class Interactor : MonoBehaviour
                                 interactable.Interact(this);
                                 changeTextColor();
                                 cleaned = true;
+                                InteractionPromptUI.Close();
                             }
                         }
                     }
@@ -90,21 +132,35 @@ public class Interactor : MonoBehaviour
                     changeText = foodText;
 
                     if (foodCooking) {
-                        interactUIText.SetText("Cooking food");
+                        interactUIText.SetText("Decoding");
                     } else if (!foodReady) {
-                        interactUIText.SetText("Cook food");
+                        interactUIText.SetText("Start decoder");
                     } else if (foodReady) {
-                        interactUIText.SetText("Take food");
+                        interactUIText.SetText("Steal password");
                     }
 
                     if (Input.GetKeyDown("e") && !foodReady) {
-                        foodText.text = "   Cooking";
+                        foodText.text = "   Decoding";
                         StartCoroutine(FoodWait());
                     } else if (Input.GetKeyDown("e") && foodReady) {
                         interactable.Interact(this);
                         changeTextColor();
                         foodTaken = true;
+                        InteractionPromptUI.Close();
                     }
+                } else if (interactable is Target && !shotTarget) {
+
+                    Target t = (Target) interactable;
+                    changeText = targetText;
+                    interactUIText.SetText("Shoot calibration panel");
+
+                    if (t.health < 30f) {
+                        InteractionPromptUI.Close();
+                        interactable.Interact(this);
+                        changeTextColor();
+                        shotTarget = true;
+                    }
+                    
                 }
 
             } 
@@ -139,10 +195,13 @@ public class Interactor : MonoBehaviour
         
         if (interactable == null || !(interactable is Scanner)) {
             Debug.Log("Failed to scan!");
+            scanned = false;
             yield return null;
         } else {
             interactable.Interact(this);
             changeTextColor();
+            scanned = true;
+            InteractionPromptUI.Close();
         }
         
     }
@@ -172,6 +231,6 @@ public class Interactor : MonoBehaviour
         foodCooking = false;
         foodReady = true;
         Debug.Log("Food is ready");
-        foodText.text = "   Food is ready";
+        foodText.text = "   Decoded!";
     }
 }
