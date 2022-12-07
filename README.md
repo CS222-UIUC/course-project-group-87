@@ -53,7 +53,7 @@ Yash Telang is a current sophomore majoring in Computer Science at the Universit
 1. Go to [3D MAFIA](https://drive.google.com/drive/u/1/folders/13qCTqrXj8mvp2V7zyenpdeTcxGncnVcA)
 2. Download the zip file (Build.zip)
 3. Unzip/extract the zip file's contents and save the contents locally onto your computer
-4. To start the game, go to build/Run4.exe and double click on Run4.exe. You should see a pop up screen. *Note that to exit the game, you must click on Alt + tab. This will give your cursor back. If you wish to make the game full-screen, you must click the full-screen option while the program opens and before it starts to run.
+4. To start the game, go to build/Run4.exe and double click on Run4.exe. You should see a pop up screen. *Note that to exit the game, you must click on Alt + tab. This will give your cursor back. If you wish to make the game full-screen, you must click the full-screen option while the program opens and before it starts to run.*
 
 ### Notes On GamePlay
 - How To Win: Complete all of the objectives before you die.
