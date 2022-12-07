@@ -1,10 +1,9 @@
-# 3D Mafia
-
 <div align = "center">
   
   <img src = "images/Run4.png">
   
   <p align = "center">
+    <h1>3D MAFIA</h1>
     <p><strong>Created by Yash Telang, Arthur Wang, Charlie Du, and Alex Wang</strong></p>
   </p>
   
