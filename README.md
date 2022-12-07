@@ -2,7 +2,7 @@
 
 <div align = "center">
   
-  <img src = "Desktop/Run4.png">
+  <img src = "images/Run4.png">
   
   <p align = "center">
     <p><strong>3D MAFIA</strong></p>
