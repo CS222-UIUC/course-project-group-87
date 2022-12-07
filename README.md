@@ -34,6 +34,14 @@
 
 <!--- Group members and their roles --->
 ## About Us
+<!---
+Yash Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. 
+
+Arthur Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. Arthur created the map
+
+Charlie Du is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign.
+
+Alex Wang is a current sophomore majoring in Math & Computer Science at the University of Illinois Urbana-Champaign. Alex worked on --->
 
 <!--- Provides reproducible installation and running instructions --->
 ## Getting Started
