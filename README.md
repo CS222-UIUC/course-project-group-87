@@ -16,5 +16,24 @@
   </p>
 </div>
 
-## Getting Started
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href = "#summary">Summary</a></li>
+    <li><a href = "#about-our-project">About Our Project</a></li>
+    <li><a href = "#about-us">About Us</a></li>
+    <li><a href = "#getting-started">Getting Started</a></li>
+  </ol>
+</details>
 
+<!--- Summary of presentation introduction --->
+## Summary
+
+<!--- Technical architecture of project --->
+## About Our Project
+
+<!--- Group members and their roles --->
+## About Us
+
+<!--- Provides reproducible installation and running instructions --->
+## Getting Started
