@@ -38,7 +38,7 @@
 <!--- Technical architecture of project --->
 ## About Our Project
 <div align = "center">
-  <img src = "diagram.png">
+  <img src = "images/diagram.png">
 </div>
 
 <!--- Group members and their roles --->
