@@ -29,7 +29,8 @@ public class Interactor : MonoBehaviour
     public Canvas winScreen;
     public float restartDelay = 10f;
 
-
+    private GameObject pc;
+    
     private int cleanCount = 0;
     private bool cleaned = false;
 
@@ -50,6 +51,10 @@ public class Interactor : MonoBehaviour
         Won = true;
     }
 
+    void Start() {
+        pc = GameObject.FindGameObjectsWithTag("Player")[0];
+    }
+
     private void Update() {
 
         if (Won && Input.GetKeyDown("r")) {
@@ -64,6 +69,7 @@ public class Interactor : MonoBehaviour
             c2.enabled = false;
             c3.enabled = false;
             winScreen.enabled = true;
+            pc.transform.GetComponent<PlayerController>().health = 1000000000f;
         }
 
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);

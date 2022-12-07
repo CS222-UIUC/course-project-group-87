@@ -11278,6 +11278,12 @@ MonoBehaviour:
   standHeight: 2
   model: {fileID: 5230383450177362916}
   health: 50
+  restartDelay: 10
+  cc: {fileID: 5976473832771744039}
+  c1: {fileID: 4662703219818843509}
+  c2: {fileID: 692350146564727561}
+  c3: {fileID: 3420670396897374087}
+  deathCanvas: {fileID: 7260646195047366378}
   Ground:
     serializedVersion: 2
     m_Bits: 8

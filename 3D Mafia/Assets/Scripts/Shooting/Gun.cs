@@ -40,6 +40,12 @@ public class Gun : MonoBehaviour
                 
             }
 
+            ArtificialIntelligence AI = hit.transform.GetComponent<ArtificialIntelligence>();
+            if (AI != null) {
+                AI.TakeDamage(damage);
+                Debug.Log(AI.health);
+            }
+
             GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impactGO, 2f);
         }
