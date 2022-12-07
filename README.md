@@ -58,5 +58,22 @@ Alex Wang is a current sophomore majoring in Math & Computer Science at the Univ
 4. To start the game, go to build/Run4.exe and double click on Run4.exe. You should see a pop up screen. *Note that to exit the game, you must click on Alt + tab. This will give your cursor back. If you wish to make the game full-screen, you must click the full-screen option while the program opens and before it starts to run.
 
 ### Notes On GamePlay
-- Objectives are to your top-left
-- 
+- How To Win: Complete all of the objectives before you die.
+
+- Screen
+  - Objectives are at the top left (they will turn green once you complete them)
+  - Current Health is at the bottom left
+  - Score is at top right
+
+- Movement
+  - WASD (or arrow keys) + mouse to move
+  - Left click on mouse to shoot
+  - Space bar to jump
+  - Press "e" to interact with challenges
+  - Upon a win, press "r" to restart game
+  - Upon a loss, simply wait and the game will restart itself
+
+- Interface
+  - Enemies are the moving blocks. Everytime a block rams into you, you will lose some health.
+  - Destroy enemies by shooting them. Killing them will increase your score.
+  - Destroying one moving blocks will respawn 2 new moving blocks.
