@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 v1 = new Vector3(0.5999994f, -4.35f, 9.15f);
     private Vector3 v2 = new Vector3(-25.5f, 1.7f, 0f);
-    private Vector3 v3 = new Vector3(13.05f, 28.66f, -3.51f);
+    private Vector3 v3 = new Vector3(26.2f, -11.27f, 15.1f);
     private Vector3 v4 = new Vector3(-16.61094f, -10.7f, 13.41543f);
 
     // Start is called before the first frame update
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
         } else {
             this.transform.position = v4;
         }
-        
+    
         scoreCanvas.sortingOrder = 1;
     }
 
@@ -118,10 +118,12 @@ public class PlayerController : MonoBehaviour
         UpdateMovement();
         //Debug.Log(playerCamera.transform.position);
         
+        /*
         if (Input.GetKeyDown("l")) {
             TakeDamage(10);
             Debug.Log("Player health is " + health);
         }
+        */
 
         healthText.SetText("Health: " + Mathf.Ceil(health));
         scoreText.SetText("Score: " + score);

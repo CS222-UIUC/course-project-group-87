@@ -88,7 +88,7 @@ public class Interactor : MonoBehaviour
 
                 if (interactable is Ball && !buttonPressed) {
                     if (!buttonPressed) {
-                        interactUIText.SetText("Press button!");
+                        interactUIText.SetText("Destroy power unit");
                         changeText = ballText;
 
                         if (Input.GetKeyDown("e")) {
@@ -102,7 +102,7 @@ public class Interactor : MonoBehaviour
                 } else if (interactable is Scanner && !scanned) {
                     if (!scanned) {
                         changeText = scanText;
-                        interactUIText.SetText("Start scanner and stay nearby!");
+                        interactUIText.SetText("Scan");
                         
                         if (Input.GetKeyDown("e")) {
                             StartCoroutine(ScanWait());
@@ -113,7 +113,7 @@ public class Interactor : MonoBehaviour
                 } else if (interactable is Whiteboard && !cleaned) {
                     if (!cleaned) {
                         changeText = whiteboardText;
-                        interactUIText.SetText("Clean 3 times!");
+                        interactUIText.SetText("Erase evidence");
 
                         if (Input.GetKeyDown("e")) {
                             cleanCount++;
@@ -132,15 +132,15 @@ public class Interactor : MonoBehaviour
                     changeText = foodText;
 
                     if (foodCooking) {
-                        interactUIText.SetText("Cooking food");
+                        interactUIText.SetText("Decoding");
                     } else if (!foodReady) {
-                        interactUIText.SetText("Cook food");
+                        interactUIText.SetText("Start decoder");
                     } else if (foodReady) {
-                        interactUIText.SetText("Take food");
+                        interactUIText.SetText("Steal password");
                     }
 
                     if (Input.GetKeyDown("e") && !foodReady) {
-                        foodText.text = "   Cooking";
+                        foodText.text = "   Decoding";
                         StartCoroutine(FoodWait());
                     } else if (Input.GetKeyDown("e") && foodReady) {
                         interactable.Interact(this);
@@ -152,7 +152,7 @@ public class Interactor : MonoBehaviour
 
                     Target t = (Target) interactable;
                     changeText = targetText;
-                    interactUIText.SetText("Shoot target!");
+                    interactUIText.SetText("Shoot calibration panel");
 
                     if (t.health < 30f) {
                         InteractionPromptUI.Close();
@@ -231,6 +231,6 @@ public class Interactor : MonoBehaviour
         foodCooking = false;
         foodReady = true;
         Debug.Log("Food is ready");
-        foodText.text = "   Food is ready";
+        foodText.text = "   Decoded!";
     }
 }
