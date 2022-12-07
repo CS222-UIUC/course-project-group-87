@@ -27,7 +27,7 @@ public class Gun : MonoBehaviour
             Debug.Log(hit.transform.name);
             
 
-            ArtificialIntelligence enemy = hit.transform.GetComponent<ArtificialIntelligence>();
+            Enemy enemy = hit.transform.GetComponent<Enemy>();
             if (enemy != null) {
                 enemy.TakeDamage(damage);
                 Debug.Log(enemy.health);

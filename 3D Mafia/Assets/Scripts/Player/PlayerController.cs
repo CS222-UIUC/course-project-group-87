@@ -9,7 +9,6 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 using UnityEngine.SceneManagement;
-using Random = System.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,13 +27,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float crouchHeight;
     [SerializeField] private float standHeight;
     [SerializeField] private GameObject model;
-    [SerializeField] private GameObject enemy;
 
 
     public static List<PlayerController> ActivePlayers = new List<PlayerController>();
     private int _score = 0;
 
-    public float health = 2000f;
+    public float health = 50f;
     
     public LayerMask Ground;
     public LayerMask Interactable;
@@ -55,6 +53,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ActivePlayers.Add(this);
         // get player controller
         _controller = GetComponent<CharacterController>();
         
@@ -84,10 +83,6 @@ public class PlayerController : MonoBehaviour
         UpdateMouseLook();
         UpdateMovement();
         //Debug.Log(playerCamera.transform.position);
-        if (Input.GetKeyDown("t"))
-        {
-            Instantiate(enemy);
-        }
 
         if (Input.GetKeyDown("r")) {
             velocity = Vector3.up * 10;
@@ -111,7 +106,7 @@ public class PlayerController : MonoBehaviour
             AdjustHeight(desiredHeight);
         }
     }
-    
+
     private void AdjustHeight(float height)
     {
         float center = height / 2;
@@ -173,7 +168,6 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage (float amount)
     {
         health -= amount;
-        Debug.Log(health);
 
         if (health <= 0f) {
             Die();
@@ -184,8 +178,7 @@ public class PlayerController : MonoBehaviour
         //Destroy(gameObject);
 
         //gameObject.transform.position = new Vector3(-66, 0, 10);
-        health = 2000f;
+        health = 50f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 }

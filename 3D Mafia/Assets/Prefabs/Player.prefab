@@ -6079,7 +6079,7 @@ GameObject:
   - component: {fileID: 1147069718539517228}
   - component: {fileID: 2003818040042266016}
   - component: {fileID: 7324799082668207253}
-  - component: {fileID: 4390935487312657839}
+  - component: {fileID: 4634967837207945167}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6136,8 +6136,6 @@ MonoBehaviour:
   crouchHeight: 1
   standHeight: 2
   model: {fileID: 5230383450177362916}
-  enemy: {fileID: 253522537092290957, guid: a452f4a7643e2644aa667cb707c23a6a, type: 3}
-  health: 50
   Ground:
     serializedVersion: 2
     m_Bits: 8
@@ -6255,20 +6253,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
---- !u!136 &4390935487312657839
-CapsuleCollider:
+--- !u!64 &4634967837207945167
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5976473832771744032}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2.3
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8604045607132181640, guid: 590917dc49945f648bac84563a3203f0, type: 3}
 --- !u!1 &6714005986983576885
 GameObject:
   m_ObjectHideFlags: 0
