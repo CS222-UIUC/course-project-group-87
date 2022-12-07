@@ -4,7 +4,7 @@
   
   <p align = "center">
     <h1>3D MAFIA</h1>
-    <p><strong>Created by Yash Telang, Arthur Wang, Charlie Du, and Alex Wang</strong></p>
+    <p><h3>Created by Yash Telang, Arthur Wang, Charlie Du, and Alex Wang</h3></p>
   </p>
   
   <p align = "center">
