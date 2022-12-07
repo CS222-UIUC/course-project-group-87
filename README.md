@@ -17,7 +17,7 @@
 </div>
 
 <details>
-  <summary><strong>Table of Contents</strong></summary>
+  <summary><h2>Table of Contents</h2></summary>
   <ol>
     <li><a href = "#summary">Summary</a></li>
     <li><a href = "#about-our-project">About Our Project</a></li>
@@ -37,20 +37,13 @@
 
 <!--- Technical architecture of project --->
 ## About Our Project
-<div align = "center">
-  <img src = "images/diagram.png">
-</div>
+
 
 <!--- Group members and their roles --->
 ## About Us
-<!---
-Yash Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. 
+Yash Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign.  Arthur Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. Charlie Du is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. Alex Wang is a current sophomore majoring in Math & Computer Science at the University of Illinois Urbana-Champaign.
 
-Arthur Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. Arthur created the map
 
-Charlie Du is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign.
-
-Alex Wang is a current sophomore majoring in Math & Computer Science at the University of Illinois Urbana-Champaign. Alex worked on --->
 
 <!--- Provides reproducible installation and running instructions --->
 ## Getting Started
