@@ -44,7 +44,7 @@
 
 <!--- Summary of presentation introduction --->
 ## Summary
-Our project is a game called Run 4. Run 4 was built using Unity and is currently a single-player game. In terms of functionality, the player spawns into a maze at the start of the game, and the player must complete all listed objectives before they are killed by enemies (moving blocks). In this ReadMe, we describe our inspiration for creating this project, the technical architecture of Run 4 (i.e, how do all the different components work together?), who we are and our roles in the project, and last but not least, how you can download and start playing Run 4!
+Our project is an original game called Run 4. Run 4 was built using Unity and is currently a single-player game. There isn't really an alternative to it, as this is an original game inspired by other survival games. In terms of functionality, the player spawns into a maze at the start of the game, and the player must complete all listed objectives before they are killed by enemies (moving blocks). In this ReadMe, we describe our inspiration for creating this project, the technical architecture of Run 4 (i.e, how do all the different components work together?), who we are and our roles in the project, and last but not least, how you can download and start playing Run 4!
 
 
 <!--- Technical architecture of project --->
