@@ -12,7 +12,7 @@
     |
     <a href = "https://www.google.com/">Demo</a>
     |
-    <a href = "https://www.google.com/">Reach Out</a>
+    <a href = "https://docs.google.com/document/d/16Ol95jGr3P_oHxa4LqEG1_2wpmvbBIXkynpoy6MEi_M/edit?usp=sharing">Reach Out</a>
   </p>
 </div>
 
@@ -21,7 +21,11 @@
   <ol>
     <li><a href = "#summary">Summary</a></li>
     <li><a href = "#about-our-project">About Our Project</a></li>
-    <li><a href = "#about-us">About Us</a></li>
+    <li>
+      <a href = "#about-us">About Us</a>
+      <ul>
+        <li><a href = "#technical-architecture">Technical Architecture</a></li>
+    </li>
     <li>
       <a href = "#getting-started">Getting Started</a>
       <ul>
@@ -32,18 +36,28 @@
   </ol>
 </details>
 
+
+
 <!--- Summary of presentation introduction --->
 ## Summary
 
+
+
 <!--- Technical architecture of project --->
 ## About Our Project
+### Technical Architecture
 <div align = "center"> 
   <img src = "images/diagram.png">
 </div>
+The technical architecture of Run 4 follows the schematic shown above. Run 4 contains 5 major components: Player Controller, Game Controller, Enemy, Interactable, and Artificial Intelligence. Their respective roles are described in the diagram.
+Lastly, 
+
+
 
 <!--- Group members and their roles --->
 ## About Us
 Yash Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign.  Arthur Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. Charlie Du is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. Alex Wang is a current sophomore majoring in Math & Computer Science at the University of Illinois Urbana-Champaign.
+For the project presentation preparation, Yash and Arthur worked on writing up the development process of our project. Yash and Charlie worked on the presentation script. Arthur completed the technical architecture flowchart. Alex completed the ReadMe. Lastly, all four group members worked together to record the demo video (which is linked at the top of this page!).
 
 
 
@@ -54,6 +68,8 @@ Yash Telang is a current sophomore majoring in Computer Science at the Universit
 2. Download the zip file (Build.zip)
 3. Unzip/extract the zip file's contents and save the contents locally onto your computer
 4. To start the game, go to build/Run4.exe and double click on Run4.exe. You should see a pop up screen. *Note that to exit the game, you must click on Alt + tab. This will give your cursor back. If you wish to make the game full-screen, you must click the full-screen option while the program opens and before it starts to run.*
+
+
 
 ### Notes On GamePlay
 - How To Win: Complete all of the objectives before you die.
