@@ -22,14 +22,14 @@
   <summary><h2>Table of Contents</h2></summary>
   <ol>
     <li><a href = "#summary">Summary</a></li>
-    <li><a href = "#about-our-project">About Our Project</a></li>
     <li>
-      <a href = "#about-us">About Us</a>
+      <a href = "#about-our-project">About Our Project</a>
       <ul>
         <li><a href = "#inspiration">Inspiration</a></li>
         <li><a href = "#technical-architecture">Technical Architecture</a></li>
       </ul>
     </li>
+    <li><a href = "#about-us">About Us</a></li>
     <li>
       <a href = "#getting-started">Getting Started</a>
       <ul>
