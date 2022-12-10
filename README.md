@@ -25,6 +25,8 @@
       <a href = "#about-us">About Us</a>
       <ul>
         <li><a href = "#technical-architecture">Technical Architecture</a></li>
+        <li><a href = "#inspiration">Inspiration</a></li>
+      </ul>
     </li>
     <li>
       <a href = "#getting-started">Getting Started</a>
@@ -45,19 +47,24 @@
 
 <!--- Technical architecture of project --->
 ## About Our Project
+### Inspiration
+When choosing what kind of project to do, we wanted to . Additionally, although Yash, Arthur, and Alex didn't have any prior Unity experience, Charlie did. Hence, we felt comfortable taking on this challenge. 
+
 ### Technical Architecture
 <div align = "center"> 
   <img src = "images/diagram.png">
 </div>
-The technical architecture of Run 4 follows the schematic shown above. Run 4 contains 5 major components: Player Controller, Game Controller, Enemy, Interactable, and Artificial Intelligence. Their respective roles are described in the diagram.
-Lastly, 
+The technical architecture of Run 4 follows the schematic shown above. Run 4 contains five major components: Player Controller, Game Controller, Enemy, Interactables, and Artifical Intelligence. Their respective roles are described in the diagram. Any interaction between components is represented by an arrow. For instance, all three components initally come from running the Run4.exe executable. The Player Controller and Game Controller are connected by the Interactables component. This means that, for instance, when a player completes an objective, the Interactable component receives this message and is able to communicate this with the Game Controller so that the Game Controller can update the player's score. Meanwhile, the Enemy component interacts with the Artificial Intelligence component to control enemy movements and responses. The enemies in Run 4 are moving blocks (more about this in "Getting Started"), and their movement is determined by the Artifical Intelligence component. When the enemy hits the player, Artificial Intelligence communicates this with Enemy so that the player's health can be updated. Similarly, when the player shoots a moving block, Artificial Intelligence communicates to Enemy that the moving block's health should decrease. While coding Run 4, we used C# and various default Unity libraries.
 
 
 
 <!--- Group members and their roles --->
 ## About Us
 Yash Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign.  Arthur Telang is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. Charlie Du is a current sophomore majoring in Computer Science at the University of Illinois Urbana-Champaign. Alex Wang is a current sophomore majoring in Math & Computer Science at the University of Illinois Urbana-Champaign.
-For the project presentation preparation, Yash and Arthur worked on writing up the development process of our project. Yash and Charlie worked on the presentation script. Arthur completed the technical architecture flowchart. Alex completed the ReadMe. Lastly, all four group members worked together to record the demo video (which is linked at the top of this page!).
+
+During the creation of the project, Yash, Charlie, and Alex initially worked together on player movement and basic environment set-up. In particular, Yash completed  the environment components, and Charlie and Alex completed the player movement components. During this time, Arthur worked on all the modeling-related aspects. This took about 2 to 3 weeks to complete. Afterwards, we split into 2 teams: Yash and Arthur worked on game logic/player objectives while Charlie completed networking.
+
+To prepare for the final project presentation, Yash and Arthur wrote up the development process of our project. Yash and Charlie worked on the presentation script. Arthur completed the technical architecture flowchart. Alex coded and wrote up the ReadMe. Lastly, all four group members worked together to record our project's demo video (which is linked at the top of this page!).
 
 
 
