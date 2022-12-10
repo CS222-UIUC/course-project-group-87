@@ -12,7 +12,7 @@
     |
     <a href = "https://docs.google.com/document/d/1tTfg5maTvJ1vPNpdlG3aSTgqO196-tSzHHWcsHte4dg/edit?usp=sharing">Development</a>
     |
-    <a href = "https://www.google.com/">Demo</a>
+    <a href = "https://mediaspace.illinois.edu/media/t/1_501wkwbs">Demo</a>
     |
     <a href = "https://docs.google.com/document/d/16Ol95jGr3P_oHxa4LqEG1_2wpmvbBIXkynpoy6MEi_M/edit?usp=sharing">Reach Out</a>
   </p>
