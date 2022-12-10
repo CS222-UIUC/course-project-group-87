@@ -10,6 +10,8 @@
   <p align = "center">
     <a href = "https://docs.google.com/document/d/1IUf3dyW1TnD_ucja0UIhg7Jr_0muf89ayezwk0SF0hw/edit?usp=sharing">Project Proposal</a>
     |
+    <a href = "https://docs.google.com/document/d/1tTfg5maTvJ1vPNpdlG3aSTgqO196-tSzHHWcsHte4dg/edit?usp=sharing">Development</a>
+    |
     <a href = "https://www.google.com/">Demo</a>
     |
     <a href = "https://docs.google.com/document/d/16Ol95jGr3P_oHxa4LqEG1_2wpmvbBIXkynpoy6MEi_M/edit?usp=sharing">Reach Out</a>
@@ -24,8 +26,8 @@
     <li>
       <a href = "#about-us">About Us</a>
       <ul>
-        <li><a href = "#technical-architecture">Technical Architecture</a></li>
         <li><a href = "#inspiration">Inspiration</a></li>
+        <li><a href = "#technical-architecture">Technical Architecture</a></li>
       </ul>
     </li>
     <li>
@@ -42,13 +44,13 @@
 
 <!--- Summary of presentation introduction --->
 ## Summary
-
+Our project is a game called Run 4. Run 4 was built using Unity and is currently a single-player game. In terms of functionality, the player spawns into a maze at the start of the game, and the player must complete all listed objectives before they are killed by enemies (moving blocks). In this ReadMe, we describe our inspiration for creating this project, the technical architecture of Run 4 (i.e, how do all the different components work together?), who we are and our roles in the project, and last but not least, how you can download and start playing Run 4!
 
 
 <!--- Technical architecture of project --->
 ## About Our Project
 ### Inspiration
-When choosing what kind of project to do, we wanted to . Additionally, although Yash, Arthur, and Alex didn't have any prior Unity experience, Charlie did. Hence, we felt comfortable taking on this challenge. 
+When determining what kind of project to do, we wanted to choose something that we would not only learn from but was also fun. Run 4 was the perfect choice for this. Most of us did not have much game development experience, so we would learn a lot from creating our first game. Additionally, although Yash, Arthur, and Alex didn't have prior Unity experience, Charlie did. Hence, we felt comfortable taking on this challenge. In the end, we learned a lot about not just how to code a game, but also how to organize and complete a project in a timely fashion (the challenges we ran into are described in more detail in our "Development" link at the top of this page). Meanwhile, this project was super fun because we got to create something that we can share with and enjoy playing with others.
 
 ### Technical Architecture
 <div align = "center"> 
