@@ -56,7 +56,9 @@ When determining what kind of project to do, we wanted to choose something that 
 <div align = "center"> 
   <img src = "images/diagram.png">
 </div>
+<p align = "center">
 The technical architecture of Run 4 follows the schematic shown above. Run 4 contains five major components: Player Controller, Game Controller, Enemy, Interactables, and Artifical Intelligence. Their respective roles are described in the diagram. Any interaction between components is represented by an arrow. For instance, all three components initally come from running the Run4.exe executable. The Player Controller and Game Controller are connected by the Interactables component. This means that, for instance, when a player completes an objective, the Interactable component receives this message and is able to communicate this with the Game Controller so that the Game Controller can update the player's score. Meanwhile, the Enemy component interacts with the Artificial Intelligence component to control enemy movements and responses. The enemies in Run 4 are moving blocks (more about this in "Getting Started"), and their movement is determined by the Artifical Intelligence component. When the enemy hits the player, Artificial Intelligence communicates this with Enemy so that the player's health can be updated. Similarly, when the player shoots a moving block, Artificial Intelligence communicates to Enemy that the moving block's health should decrease. While coding Run 4, we used C# and various default Unity libraries.
+</p>
 
 
 
